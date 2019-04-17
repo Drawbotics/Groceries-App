@@ -3,9 +3,9 @@ import styles from './ListItem.module.scss';
 
 const ListItem = ({ name, quantity }) => (
 	<li className={styles.wrapper}>
-		<div>
-			<h1>{name}</h1>
-			<p>{quantity}</p>
+		<div className={styles.subWrapper}>
+			<h2 className={styles.itemName}>{name}</h2>
+			<p className={styles.itemQuantity}>{quantity}</p>
 		</div>
 	</li>
 );

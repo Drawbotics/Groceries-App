@@ -2,7 +2,32 @@
 	list-style: none;
     padding: 0 30px 50px 0;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	position: relative;
+}
+
+.subWrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	position: relative;
+	border-style: solid;
+	width: 400px;
+}
+
+.itemName {
+	font-size: 30px;
+	padding: 5px 20px 5px 20px;
+	text-transform: capitalize;
+	
+}
+
+.itemQuantity{
+	font-weight: 300;
+	font-size: 30px;
+	padding: 10px;
+	border-style: solid;
+	background-color: rgb(200, 235, 223);
 }

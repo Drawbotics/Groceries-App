@@ -3,11 +3,13 @@ import styles from './Modal.module.scss';
 import Form from '../Form/Form';
 
 
-const Modal = ({ handleCloseModal }) => (
+const Modal = ({ handleCloseModal, handleAddItem }) => (
 	<div className={styles.wrapper}>
-		<button onClick={handleCloseModal} className={styles.closeButton}>x</button>
-		<h2 className={styles.header}>ADD NEW ITEM</h2>
-		<Form />
+		<button
+			onClick={handleCloseModal}
+			className={styles.closeButton}
+		>x</button>
+		<Form handleAddItem={handleAddItem} />
 	</div>
 );
 

@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './List.module.scss';
 import ListItem from './ListItem';
 
-const List = () => (
+const List = ({ items }) => (
 	<ul className={styles.wrapper}>
-		<ListItem />
+		{items.map((item, index) => (
+			<ListItem {...item} key={index} />
+		))}
 	</ul>
 );
 

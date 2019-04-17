@@ -12,3 +12,10 @@
   position: fixed;
   height: 100vh;
 }
+
+.header{
+	display: grid;
+	grid-template-columns: 1fr 100px;
+	align-items: center;
+	padding: 30px 40px;
+}

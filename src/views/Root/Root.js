@@ -7,8 +7,14 @@ import Button from '../../components/Button/Button';
 
 class Root extends Component {
 	state = {
-		isModalOpen: false
+		isModalOpen: true
 	}
+
+	closeModal = () => {
+		this.setState({
+			isModalOpen: false
+		})
+	};
 
 	render() {
 		const { isModalOpen } = this.state;
@@ -17,7 +23,7 @@ class Root extends Component {
 				<Header />
 				<Button>Add new item</Button>
 				<List />
-				{isModalOpen && <Modal />}
+				{isModalOpen && <Modal handleModal={this.closeModal} />}
 			</>
 
 

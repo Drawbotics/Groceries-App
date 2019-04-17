@@ -8,12 +8,18 @@ import Button from '../../components/Button/Button';
 
 class Root extends Component {
 	state = {
-		isModalOpen: true,
+		isModalOpen: false,
 	}
 
 	closeModal = () => {
 		this.setState({
 			isModalOpen: false
+		})
+	};
+
+	openModal = () => {
+		this.setState({
+			isModalOpen: true
 		})
 	};
 
@@ -23,8 +29,8 @@ class Root extends Component {
 			<BrowserRouter>
 				<Header />
 				<Route exact path="/" component={List}></Route>
-				<Button>Add new item</Button>
-				{isModalOpen && <Modal handleModal={this.closeModal} />}
+				<Button handleOpenModal={this.openModal}></Button>
+				{isModalOpen && <Modal handleCloseModal={this.closeModal} />}
 			</BrowserRouter>
 
 

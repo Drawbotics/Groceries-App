@@ -3,9 +3,9 @@ import styles from './Modal.module.scss';
 import Form from '../Form/Form';
 
 
-const Modal = ({ handleModal }) => (
+const Modal = ({ handleCloseModal }) => (
 	<div className={styles.wrapper}>
-		<button onClick={handleModal} className={styles.closeButton}>x</button>
+		<button onClick={handleCloseModal} className={styles.closeButton}>x</button>
 		<h2 className={styles.header}>ADD NEW ITEM</h2>
 		<Form />
 	</div>

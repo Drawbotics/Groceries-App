@@ -1,17 +1,19 @@
 .wrapper {
   overflow-y: scroll;
   padding: 70px 80px 50px;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   left: 0;
   right: 0;
   margin: 0 auto;
-  width: 60vw;
+//   width: 60vw;
+  max-width: 500px;
+  min-width: 300px;
   background-color: white;
   box-shadow: 0 20px 40px -5px rgba(#CEBB9B, .3);
   position: fixed;
-  height: 100vh;
-  max-height: calc(100vh - 40vh);
+//   height: 60vh;
+  max-height: calc(100vh - 20vh);
   display: flex;
   flex-direction: column;
 }

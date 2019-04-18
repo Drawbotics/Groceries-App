@@ -4,15 +4,18 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import AppContext from '../../context';
 import Modal from '../../components/Modal/Modal';
 import Header from '../../components/Header/Header';
-import Button from '../../components/Button/Button';
 import GroceryListView from '../GroceryListView/GroceryListView';
+import Form from '../../components/Form/Form';
+import FormTypes from '../../components/Form/FormTypes';
 
 class Root extends Component {
 	state = {
 		isModalOpen: false,
+		formType: FormTypes.addItem,
 		grocery: [],
 		searchQuery: '',
 		groceryCompleted: [],
+		currentItemName: ''
 	}
 
 	closeModal = () => {
@@ -21,10 +24,11 @@ class Root extends Component {
 		})
 	};
 
-	openModal = () => {
+	openAddItemModal = () => {
 		this.setState({
-			isModalOpen: true
-		})
+			isModalOpen: true,
+			formType: FormTypes.addItem
+		});
 	};
 
 	addItem = (event, newItem) => {
@@ -34,6 +38,22 @@ class Root extends Component {
 			[newItem.type]: [...prevState[newItem.type], newItem],
 		}));
 
+		this.closeModal();
+	};
+
+	updateItem = (event, item) => {
+		event.preventDefault();
+
+		const { groceryCompleted } = this.state;
+
+		const groceryItemIndex = groceryCompleted.findIndex(g => g.name === item.name);
+		const groceryItem = groceryCompleted[groceryItemIndex];
+		groceryItem.price = item.price;
+		groceryItem.buyer = item.buyer;
+
+		this.setState({
+			groceryCompleted: groceryCompleted
+		});
 		this.closeModal();
 	};
 
@@ -52,15 +72,20 @@ class Root extends Component {
 		this.setState(prevState => ({
 			grocery: [...prevState["grocery"].filter(g => g.name !== name)],
 			groceryCompleted: [...prevState["groceryCompleted"], item],
+			isModalOpen: true,
+			formType: FormTypes.addPrice,
+			name: name
 		}));
 	}
 
 	render() {
-		const { isModalOpen } = this.state;
+		const { isModalOpen, formType, name } = this.state;
 		const contextElements = {
 			addItem: this.addItem,
+			updateItem: this.updateItem,
 			handleSearchInput: this.handleSearchInput,
 			markAsCompleted: this.markAsCompleted,
+			openAddItemModal: this.openAddItemModal,
 			...this.state
 		}
 
@@ -70,9 +95,10 @@ class Root extends Component {
 					<Header />
 					<main className={'container'}>
 						<Route exact path="/" component={GroceryListView}></Route>
-						<Button onClick={this.openModal}>Add item</Button>
 					</main>
-					{isModalOpen && <Modal handleCloseModal={this.closeModal} />}
+					{isModalOpen && <Modal handleCloseModal={this.closeModal}>
+						<Form formType={formType} name={name} />
+					</Modal>}
 				</AppContext.Provider>
 			</BrowserRouter>
 		);

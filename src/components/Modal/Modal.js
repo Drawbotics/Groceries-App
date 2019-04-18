@@ -1,15 +1,13 @@
 import React from 'react';
 import styles from './Modal.module.scss';
-import Form from '../Form/Form';
 
-
-const Modal = ({ handleCloseModal, handleAddItem }) => (
+const Modal = ({ handleCloseModal, children }) => (
 	<div className={styles.wrapper}>
 		<button
 			onClick={handleCloseModal}
 			className={styles.closeButton}
 		>x</button>
-		<Form handleAddItem={handleAddItem} />
+		{children}
 	</div>
 );
 

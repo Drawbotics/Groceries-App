@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Form.module.scss';
 import AppContext from '../../context';
 import Button from '../Button/Button';
+import Input from '../Input/Input';
 
 class Form extends React.Component {
 	state = {
@@ -17,8 +18,6 @@ class Form extends React.Component {
 	};
 
 	render() {
-		const { } = this.state;
-
 		return (
 			<AppContext.Consumer>
 				{(context) => (
@@ -28,30 +27,23 @@ class Form extends React.Component {
 							className={styles.form}
 							onSubmit={(event) => context.addItem(event, this.state)}
 						>
-							<div className={styles.itemWrapper}>
-								<input
-									className={styles.input}
-									onChange={this.handleInputChange}
-									value={this.state.name}
-									type="text"
-									placeholder=" "
-									name="name"
-									required
-								/>
-								<label>Item name</label>
-							</div>
-							<div className={styles.itemWrapper}>
-								<input
-									className={styles.input}
-									onChange={this.handleInputChange}
-									value={this.state.quantity}
-									type="text"
-									placeholder=" "
-									name="quantity"
-									required
-								/>
-								<label>Quantity</label>
-							</div>
+							<Input
+								onChange={this.handleInputChange}
+								value={this.state.name}
+								type="text"
+								name="name"
+								label="Add item"
+								required
+							/>
+							<Input
+								className={styles.input}
+								onChange={this.handleInputChange}
+								value={this.state.quantity}
+								type="number"
+								name="quantity"
+								label="quantity"
+								required
+							/>
 							<Button>Save</Button>
 						</form>
 					</div>

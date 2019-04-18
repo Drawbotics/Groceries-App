@@ -1,6 +1,7 @@
 import React from 'react';
 import AppContext from '../../context';
 import List from '../../components/List/List';
+import Input from '../../components/Input/Input';
 
 
 const GroceryListView = () => (
@@ -8,12 +9,12 @@ const GroceryListView = () => (
 	
 		{(context) => (
 			<>
-				<input 
-					className="searchInput" 
-					placeholder="Search by item name" 
+				<Input 
+					placeholder=" " 
 					type="text"
 					onChange={context.handleSearchInput}
 					name="searchQuery"
+					label="Search by item name"
 					value={context.searchQuery}
 					/>
 				{context.searchQuery.lenght ? (

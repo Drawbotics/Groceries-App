@@ -1,0 +1,54 @@
+.formItem {
+	position: relative;
+	width: 100%;
+	margin: 24px 0;
+	flex-shrink: 0;
+}
+
+.formItemBar {
+	height: 2px;
+	width: 300px;
+	background: #9098a9;
+	transition: .1s all;
+}
+
+.label {	
+	position: absolute;
+	top: 3px;
+	left: 0;
+	font-size: 16px;
+	color: #9098a9;
+	transition: .2s ease-out all;
+}
+
+.input {
+	color: #9098a9;
+	font-size: 20px;
+	border: none;
+	line-height: 22px;
+	width: 100%;
+	background: none;
+}
+
+
+.input:focus {
+	outline: none;
+}
+
+.input:focus + .label {
+	top: -22px;
+	font-size: 13px;
+}
+
+.input:not(:placeholder-shown) + .label {
+	top:-22px;
+	font-size: 13px;
+}
+
+.input:focus ~ .formItemBar {
+	background: #7d7d7d;
+}
+
+.input:not(:focus):invalid ~ .formItemBar {
+	background: red;;
+}

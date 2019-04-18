@@ -36,12 +36,11 @@ class Form extends React.Component {
 								required
 							/>
 							<Input
-								className={styles.input}
 								onChange={this.handleInputChange}
 								value={this.state.quantity}
 								type="number"
 								name="quantity"
-								label="quantity"
+								label="Quantity"
 								required
 							/>
 							<Button>Save</Button>

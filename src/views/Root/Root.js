@@ -37,9 +37,10 @@ class Root extends Component {
 	};
 
 	handleSearchInput = event => {
+		const searchQuery = event.target.value;
 		this.setState({
-			[event.target.name]: event.target.value,
-		});
+			searchQuery: searchQuery
+		})
 	};
 
 	render() {
@@ -54,13 +55,13 @@ class Root extends Component {
 			<BrowserRouter>
 				<AppContext.Provider value={contextElements}>
 					<Header />
-					<Route exact path="/" component={GroceryListView}></Route>
-					<Button onClick={this.openModal}>Add item</Button>
+					<main className={'container'}>
+						<Route exact path="/" component={GroceryListView}></Route>
+						<Button onClick={this.openModal}>Add item</Button>
+					</main>
 					{isModalOpen && <Modal handleCloseModal={this.closeModal} />}
 				</AppContext.Provider>
 			</BrowserRouter>
-
-
 		);
 	}
 }

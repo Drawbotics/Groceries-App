@@ -11,8 +11,8 @@ body{
 	font-family: 'Montserrat', sans-serif;
 }
 
-.searchInput {
-	border: none;
-	color: black;
-	position: relative;
+.container {
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
 }

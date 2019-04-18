@@ -2,29 +2,33 @@ import React from 'react';
 import AppContext from '../../context';
 import List from '../../components/List/List';
 import Input from '../../components/Input/Input';
+import styles from './GroceryListView.module.scss';
 
 
 const GroceryListView = () => (
 	<AppContext.Consumer>
-	
 		{(context) => (
-			<>
-				<Input 
-					placeholder=" " 
+			<div className={styles.wrapper}>
+				<Input
+					placeholder=" "
 					type="text"
 					onChange={context.handleSearchInput}
 					name="searchQuery"
 					label="Search by item name"
 					value={context.searchQuery}
-					/>
-				{context.searchQuery.lenght ? (
-					context.grocery.filter(g => g.name.includes(context.searchQuery)).map(g => (
-						<div>{g}</div>
-					))
-				) : (
-					<List items={context.grocery} />
-				)}
-			</>
+					tag="searchInput"
+				/>
+				<div>
+					{context.searchQuery ? (
+						<List items={context.grocery.filter(g => {
+							const shouldFilter = g.name.toLowerCase().includes(context.searchQuery.toLowerCase());
+							return shouldFilter;
+						})} />
+					) : (
+							<List items={context.grocery} />
+						)}
+				</div>
+			</div>
 		)}
 	</AppContext.Consumer>
 );

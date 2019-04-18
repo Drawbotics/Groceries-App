@@ -2,27 +2,34 @@ import React from 'react';
 import styles from './Input.module.scss';
 import PropTypes from 'prop-types';
 
-const Input = ({  name, type, label, ...props }) => (
-	<div className={styles.formItem}>
+const Input = ({ tag: Tag, name, type, label, maxLength, ...props }) => (
+	<div className={styles.inputWrapper}>
 		<input
-			className={styles.input}
+			className={Tag !== 'searchInput' ? styles.input : styles.searchInput}
 			type={type}
 			name={name}
 			id={name}
 			placeholder=" "
-			{...props}
+			maxLength={maxLength}
+			{...props} 
 		/>
 		<label className={styles.label} htmlFor={name}>
 			{label}
 		</label>
-		<div className={styles.formItemBar}></div>
+		<div className={styles.inputBar}></div>
 	</div>
 );
 
 Input.propTypes = {
+	tag: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired
 };
+
+Input.defaultProps = {
+	tag: 'input',
+	maxLength: 100,
+}
 
 export default Input;

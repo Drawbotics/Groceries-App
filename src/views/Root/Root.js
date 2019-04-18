@@ -12,6 +12,7 @@ class Root extends Component {
 		isModalOpen: false,
 		grocery: [],
 		searchQuery: '',
+		groceryCompleted: [],
 	}
 
 	closeModal = () => {
@@ -43,11 +44,23 @@ class Root extends Component {
 		})
 	};
 
+	markAsCompleted = (name) => {
+		const { grocery } = this.state;
+
+		const item = grocery.find(g => g.name === name);
+		item.isBought = true;
+		this.setState(prevState => ({
+			grocery: [...prevState["grocery"].filter(g => g.name !== name)],
+			groceryCompleted: [...prevState["groceryCompleted"], item],
+		}));
+	}
+
 	render() {
 		const { isModalOpen } = this.state;
 		const contextElements = {
 			addItem: this.addItem,
 			handleSearchInput: this.handleSearchInput,
+			markAsCompleted: this.markAsCompleted,
 			...this.state
 		}
 

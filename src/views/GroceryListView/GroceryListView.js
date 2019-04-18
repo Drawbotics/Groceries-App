@@ -3,6 +3,8 @@ import AppContext from '../../context';
 import List from '../../components/List/List';
 import Input from '../../components/Input/Input';
 import styles from './GroceryListView.module.scss';
+import { FaAngleDown } from 'react-icons/fa';
+import Button from '../../components/Button/Button';
 
 const SearchInput = ({ context }) => (
 	<Input
@@ -21,6 +23,7 @@ const GroceryListView = () => (
 		{(context) => (
 			<div className={styles.wrapper}>
 				<SearchInput context={context} />
+				<Button onClick={context.openAddItemModal}>Add item</Button>
 				<div>
 					{context.searchQuery ? (
 						<List items={context.grocery.filter(g => {
@@ -31,7 +34,11 @@ const GroceryListView = () => (
 							<List items={context.grocery} />
 						)}
 				</div>
-				<label>Completed</label>
+				<div>
+					<label>Completed</label>
+					<FaAngleDown />
+				</div>
+
 				<div>
 					{context.groceryCompleted.length ? (
 						<List items={context.groceryCompleted} />

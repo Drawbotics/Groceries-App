@@ -12,6 +12,7 @@ class Root extends Component {
 	state = {
 		isModalOpen: false,
 		grocery: [],
+		searchQuery: '',
 	}
 
 	closeModal = () => {
@@ -36,10 +37,17 @@ class Root extends Component {
 		this.closeModal();
 	};
 
+	handleSearchInput = event => {
+		this.setState({
+			[event.target.name]: event.target.value,
+		});
+	};
+
 	render() {
-		const { isModalOpen } = this.state;
+		const { isModalOpen, searchQuery, grocery } = this.state;
 		const contextElements = {
 			addItem: this.addItem,
+			handleSearchInput: this.handleSearchInput,
 			...this.state
 		}
 

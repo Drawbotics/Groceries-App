@@ -15,7 +15,7 @@
 	place-content: center center;
 	position: relative;
 	min-width: 30%;
-	border-style: dotted;
+	border-style: solid;
 	width: 30%;
 
 	@media (max-width: 600px) {
@@ -52,11 +52,12 @@
 		place-content: center flex-start;
 		align-items: center;
 		flex-wrap: nowrap;
-
+		
 		h3 {
-			@media (max-width: 600px) {
-				font-size: 20px;
-			}
+
+				@media (max-width: 600px) {
+					font-size: 20px;
+				}
 		}
 	}
 }
@@ -88,12 +89,9 @@
 }
 
 .itemQuantity {
-	font-weight: 300;
 	font-size: 30px;
-	padding: 10px;
+	padding-left: 10px;
 	margin-left: 10px;
-	border-style: solid;
-	background-color: rgb(200, 235, 223);
 }
 
 .itemQuantityBought{

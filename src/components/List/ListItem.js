@@ -28,12 +28,12 @@ const ListItem = ({ name, quantity, isBought }) => (
 							{!isBought ? (
 								<>
 									<h3>Quantity: </h3>
-									<p className={styles.itemQuantity}>{quantity}</p>
+									<h3 className={styles.itemQuantity}>{quantity}</h3>
 								</>
 							) : (
 									<>
 										<h3 className={styles.itemQuantityBought}>Quantity: </h3>
-										<p className={styles.itemQuantityBought}>{quantity}</p>
+										<h3 className={styles.itemQuantityBought}>{quantity}</h3>
 									</>
 								)}
 

@@ -54,7 +54,10 @@ const GroceryListView = () => (
 						)}
 				</div>
 				<div>
-					<label onClick={context.toggleShowCompleted}>Completed</label>
+					<label
+						onClick={context.toggleShowCompleted}
+						className={styles.label}
+					>Completed</label>
 					{
 						context.showCompleted ? (<FaAngleDown />) : (<FaAngleUp />)
 					}

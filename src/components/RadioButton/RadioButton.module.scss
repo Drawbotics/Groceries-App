@@ -3,7 +3,7 @@
   display: inline-flex;
   align-items: center;
   margin: 20px 20px 20px 0;
-  color: black;
+  color: rgb(0, 83, 135);
   font-weight: lighter;
   
   input {
@@ -16,7 +16,7 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 2px solid black;
+    border: 2px solid rgb(0, 83, 135);;
   }
   
   input:checked + &Button  {
@@ -25,4 +25,8 @@
 	border: 2px solid rgb(0, 83, 135);
 	color: rgb(0, 83, 135);
   }
+}
+
+.children {
+	color: rgb(0, 83, 135);
 }

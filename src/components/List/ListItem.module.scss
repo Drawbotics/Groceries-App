@@ -17,6 +17,8 @@
 	min-width: 30%;
 	border-style: solid;
 	border-color: rgb(0, 83, 135);
+	background: rgb(0, 83, 135);
+	color: white;
 	width: 30%;
 
 	@media (max-width: 600px) {
@@ -54,7 +56,7 @@
 	top: 9px;
 	width: 30px;
 	height: 40px;
-	color:rgba(53, 177, 134, 0.5)
+	color:rgba(200, 235, 223, 0.5);
 }
 
 .infoWrapper {
@@ -85,6 +87,7 @@
 	padding: 5px 20px 5px 20px;
 	text-transform: capitalize;
 	margin-left: 10px;
+	color:white;
 }
 
 .itemNameBought{
@@ -110,6 +113,7 @@
 	font-size: 30px;
 	padding-left: 10px;
 	margin-left: 10px;
+	color:white;
 }
 
 .itemQuantityBought{
@@ -128,4 +132,8 @@
 		right: 0;
 		top: 50%;
 	}
+}
+
+.label{
+	color: rgb(0, 83, 135);
 }

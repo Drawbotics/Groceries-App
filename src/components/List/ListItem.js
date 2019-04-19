@@ -15,7 +15,7 @@ const ListItem = ({ name, quantity, isBought }) => {
 							<div className={styles.info}>
 								{!isBought ? (
 									<>
-										<h3>Name: </h3>
+										<h3 className={styles.itemName}>Name: </h3>
 										<h3 className={styles.itemName}>{name}</h3>
 									</>
 								) : (
@@ -29,7 +29,7 @@ const ListItem = ({ name, quantity, isBought }) => {
 							<div className={styles.info}>
 								{!isBought ? (
 									<>
-										<h3>Quantity: </h3>
+										<h3 className={styles.itemQuantity}>Quantity: </h3>
 										<h3 className={styles.itemQuantity}>{quantity}</h3>
 									</>
 								) : (

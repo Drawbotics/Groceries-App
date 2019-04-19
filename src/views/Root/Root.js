@@ -9,21 +9,33 @@ import RecipesListView from '../RecipesListView/RecipesListView';
 import StatisticsView from '../StatisticsView/StatisticsView';
 import Form from '../../components/Form/Form';
 import FormTypes from '../../components/Form/FormTypes';
+import { GroceryService } from './GroceryService';
 
 class Root extends Component {
+
 	state = {
 		isModalOpen: false,
 		formType: FormTypes.addItem,
 		grocery: [],
 		searchQuery: '',
 		groceryCompleted: [],
-		currentItemName: ''
-	}
+		itemUnderEdition: ''
+	};
+
+	groceryService = new GroceryService();
+
+	componentWillMount = () => {
+		this.setState({
+			grocery: this.groceryService.getAllGroceries(),
+			groceryCompleted: this.groceryService.getAllCompletedGroceries()
+		});
+	};
 
 	closeModal = () => {
 		this.setState({
-			isModalOpen: false
-		})
+			isModalOpen: false,
+			itemUnderEdition: null
+		});
 	};
 
 	openAddItemModal = () => {
@@ -35,35 +47,32 @@ class Root extends Component {
 
 	addItem = (event, newItem) => {
 		event.preventDefault();
+		const grocery = this.groceryService.addGroceryItem(newItem);
 
-		this.setState(prevState => ({
-			[newItem.type]: [...prevState[newItem.type], newItem],
-		}));
+		this.setState({
+			grocery: grocery,
+		});
 
 		this.closeModal();
 	};
 
 	deleteItem = (name) => {
-		let { grocery } = this.state;
-		grocery = grocery.filter(g => g.name !== name);
+		const grocery = this.groceryService.deleteGroceryItem(name);
+
 		this.setState({
 			grocery: grocery
 		});
-	}
+	};
 
 	updateItem = (event, item) => {
 		event.preventDefault();
-		const { grocery, groceryCompleted } = this.state;
-		const groceryItem = grocery.find(g => g.name === item.name);
-		groceryItem.price = item.price;
-		groceryItem.buyer = item.buyer;
-		groceryItem.isBought = true;
+		const updateResult = this.groceryService.updateGroceryItem(item);
 
 		this.setState({
-			grocery: [...grocery.filter(g => g.name !== item.name)],
-			groceryCompleted: [...groceryCompleted, groceryItem],
-			name: null
+			grocery: updateResult.grocery,
+			groceryCompleted: updateResult.groceryCompleted,
 		});
+
 		this.closeModal();
 	};
 
@@ -71,7 +80,7 @@ class Root extends Component {
 		const searchQuery = event.target.value;
 		this.setState({
 			searchQuery: searchQuery
-		})
+		});
 	};
 
 	markAsCompleted = (name) => {
@@ -79,12 +88,12 @@ class Root extends Component {
 		this.setState({
 			isModalOpen: true,
 			formType: FormTypes.addPrice,
-			name: name
+			itemUnderEdition: name
 		});
-	}
+	};
 
 	render() {
-		const { isModalOpen, formType, name } = this.state;
+		const { isModalOpen, formType, itemUnderEdition } = this.state;
 		const contextElements = {
 			addItem: this.addItem,
 			updateItem: this.updateItem,
@@ -93,7 +102,7 @@ class Root extends Component {
 			markAsCompleted: this.markAsCompleted,
 			openAddItemModal: this.openAddItemModal,
 			...this.state
-		}
+		};
 
 		return (
 			<BrowserRouter>
@@ -107,12 +116,12 @@ class Root extends Component {
 						</Switch>
 					</main>
 					{isModalOpen && <Modal handleCloseModal={this.closeModal}>
-						<Form formType={formType} name={name} />
+						<Form formType={formType} name={itemUnderEdition} />
 					</Modal>}
 				</AppContext.Provider>
 			</BrowserRouter>
 		);
-	}
-}
+	};
+};
 
 export default Root;

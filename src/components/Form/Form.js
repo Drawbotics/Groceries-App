@@ -30,7 +30,7 @@ const AddGroceryItemForm = ({ context, handleInputChange, handleDropdownChange, 
 				required
 			/>
 			<CategoryDropdown onChange={handleDropdownChange} />
-			<Button>Save</Button>
+			<Button secondary>Save</Button>
 		</form>
 	</div>
 );

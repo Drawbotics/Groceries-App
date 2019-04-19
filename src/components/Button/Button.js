@@ -1,12 +1,14 @@
 import React from 'react';
 import styles from './Button.module.scss';
 
-const Button = ({ children, ...props }) => (
-	<>
-		<button className={styles.button} {...props}>
-			{children}
-		</button>
-	</>
-);
-
+const Button = ({ children, secondary, ...props }) => {
+	const buttonClass = secondary ? styles.secondary : styles.button;
+	return (
+		<>
+			<button className={buttonClass} {...props}>
+				{children}
+			</button>
+		</>
+	);
+};
 export default Button;

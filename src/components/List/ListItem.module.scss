@@ -16,17 +16,34 @@
 	position: relative;
 	min-width: 30%;
 	border-style: solid;
+	border-color: rgb(0, 83, 135);
 	width: 30%;
 
 	@media (max-width: 600px) {
 		width: 100%;
 	}
 }
+
+.subWrapperCompleted {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	place-content: center center;
+	position: relative;
+	min-width: 30%;
+	width: 30%;
+	background-color: rgba(53, 177, 134, 0.5);
+	
+	@media (max-width: 600px) {
+		width: 100%;
+	}
+}
+
 .checkbox {
 		position: absolute;
 		align-items: right;
 		margin-left: 30px;
-		width: 50px;
+		width: 60px;
 		height: 50px;
 		right: 20px;
 	}
@@ -52,6 +69,7 @@
 		place-content: center flex-start;
 		align-items: center;
 		flex-wrap: nowrap;
+		color: rgb(0, 83, 135);
 		
 		h3 {
 

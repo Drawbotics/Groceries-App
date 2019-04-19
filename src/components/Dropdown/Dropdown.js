@@ -30,7 +30,11 @@ export default class CategoryDropdown extends React.Component {
 	render() {
 		const { selectedCategory } = this.state;
 		return (
-			<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+			<Dropdown
+				className={styles.wrapper}
+				isOpen={this.state.dropdownOpen}
+				toggle={this.toggle}
+				required>
 				<DropdownToggle caret>
 					{selectedCategory ? selectedCategory : 'Select category'}
 				</DropdownToggle>

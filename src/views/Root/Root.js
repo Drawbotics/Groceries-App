@@ -41,9 +41,16 @@ class Root extends Component {
 		this.closeModal();
 	};
 
+	deleteItem = (name) => {
+		let { grocery } = this.state;
+		grocery = grocery.filter(g => g.name !== name);
+		this.setState({
+			grocery: grocery
+		});
+	}
+
 	updateItem = (event, item) => {
 		event.preventDefault();
-
 		const { groceryCompleted } = this.state;
 
 		const groceryItemIndex = groceryCompleted.findIndex(g => g.name === item.name);
@@ -52,7 +59,8 @@ class Root extends Component {
 		groceryItem.buyer = item.buyer;
 
 		this.setState({
-			groceryCompleted: groceryCompleted
+			groceryCompleted: groceryCompleted,
+			currentItemName: ''
 		});
 		this.closeModal();
 	};
@@ -83,6 +91,7 @@ class Root extends Component {
 		const contextElements = {
 			addItem: this.addItem,
 			updateItem: this.updateItem,
+			deleteItem: this.deleteItem,
 			handleSearchInput: this.handleSearchInput,
 			markAsCompleted: this.markAsCompleted,
 			openAddItemModal: this.openAddItemModal,

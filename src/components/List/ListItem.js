@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ListItem.module.scss';
 import Checkbox from '../Checkbox/Checkbox';
 import AppContext from '../../context';
-import { MdClear } from 'react-icons/md';
+import { FaTrash } from 'react-icons/fa';
 
 const ListItem = ({ name, quantity, isBought }) => (
 	<AppContext.Consumer>
@@ -11,14 +11,32 @@ const ListItem = ({ name, quantity, isBought }) => (
 				<div className={styles.subWrapper}>
 					<div className={styles.infoWrapper}>
 						<div className={styles.info}>
-							<h3>Name:</h3>
-							{/* <h3 className={styles.itemName}>{name}</h3> */}
-							<h3>{name}</h3>
+							{!isBought ? (
+								<>
+									<h3>Name: </h3>
+									<h3 className={styles.itemName}>{name}</h3>
+								</>
+							) : (
+									<>
+										<h3>Name: </h3>
+										<h3 className={styles.itemNameBought}>{name}</h3>
+									</>
+								)}
+
 						</div>
 						<div className={styles.info}>
-							<h3>Quantity:</h3>
-							{/* <p className={styles.itemQuantity}>{quantity}</p> */}
-							<h3>{quantity}</h3>
+							{!isBought ? (
+								<>
+									<h3>Quantity: </h3>
+									<p className={styles.itemQuantity}>{quantity}</p>
+								</>
+							) : (
+									<>
+										<h3>Quantity: </h3>
+										<p className={styles.itemQuantityBought}>{quantity}</p>
+									</>
+								)}
+
 						</div>
 					</div>
 					<div className={styles.checkbox}>
@@ -27,7 +45,12 @@ const ListItem = ({ name, quantity, isBought }) => (
 							onChange={() => context.markAsCompleted(name)} />
 					</div>
 					<div className={styles.remove}>
-						<MdClear onClick={() => context.deleteItem(name)} />
+						{!isBought ? (
+							<FaTrash onClick={() => context.deleteItem(name)} />
+						) : (
+								null
+							)}
+
 					</div>
 				</div>
 			</li>

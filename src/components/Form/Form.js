@@ -45,7 +45,7 @@ const AddPriceItemForm = ({ context, handleInputChange, state }) => (
 				value={state.price}
 				type="number"
 				name="price"
-				label="$3"
+				label="3€"
 				required
 			/>
 			<Input

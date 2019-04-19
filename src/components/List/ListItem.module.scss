@@ -17,17 +17,23 @@
 	max-width: 40%;
 	min-width: 30%;
 	border-style: dotted;
-
-	.checkbox {
+}
+.checkbox {
+		position: absolute;
 		align-items: right;
 		margin-left: 30px;
-		width: 30px;
-		height: 30px;
+		width: 50px;
+		height: 50px;
+		right: 20px;
 	}
 
-	.remove {
-		padding-left: 30px;
-	}
+.remove {
+	position: absolute;
+	right: 0;
+	top: 9px;
+	width: 30px;
+	height: 40px;
+	color:rgba(53, 177, 134, 0.5)
 }
 
 .infoWrapper {
@@ -49,12 +55,53 @@
 	font-size: 30px;
 	padding: 5px 20px 5px 20px;
 	text-transform: capitalize;
+	margin-left: 10px;
+}
+
+.itemNameBought{
+	font-size: 30px;
+	padding: 5px 20px 5px 20px;
+	text-transform: capitalize;
+	margin-left: 10px;
+	position: relative;
+
+
+	&::after {
+		border-bottom: 0.125em solid rgba(200, 235, 223, 0.5);
+		content: "";
+		left: 0;
+		line-height: 1em;
+		margin-top: calc(0.125em / 2 * -1);
+		position: absolute;
+		right: 0;
+		top: 50%;
+	}
 }
 
 .itemQuantity {
 	font-weight: 300;
 	font-size: 30px;
 	padding: 10px;
+	margin-left: 10px;
 	border-style: solid;
 	background-color: rgb(200, 235, 223);
+}
+
+.itemQuantityBought{
+	font-size: 30px;
+	padding: 5px 20px 5px 20px;
+	text-transform: capitalize;
+	margin-left: 10px;
+	position: relative;
+
+	&::after {
+		border-bottom: 0.125em solid rgba(200, 235, 223, 0.5);
+		content: "";
+		left: 0;
+		line-height: 1em;
+		margin-top: calc(0.125em / 2 * -1);
+		position: absolute;
+		right: 0;
+		top: 50%;
+	}
 }

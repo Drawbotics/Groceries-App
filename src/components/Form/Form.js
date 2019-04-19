@@ -54,6 +54,7 @@ const AddPriceItemForm = ({ context, handleInputChange, state }) => (
 				type="text"
 				name="buyer"
 				label="Who"
+				required
 			/>
 			<Button>Save</Button>
 		</form>

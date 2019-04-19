@@ -19,7 +19,8 @@ class Root extends Component {
 		grocery: [],
 		searchQuery: '',
 		groceryCompleted: [],
-		itemUnderEdition: ''
+		itemUnderEdition: '',
+		isNameSearch: true
 	};
 
 	groceryService = new GroceryService();
@@ -84,12 +85,17 @@ class Root extends Component {
 	};
 
 	markAsCompleted = (name) => {
-
 		this.setState({
 			isModalOpen: true,
 			formType: FormTypes.addPrice,
 			itemUnderEdition: name
 		});
+	};
+
+	switchSearch = () => {
+		this.setState(prevState => ({
+			isNameSearch: !prevState.isNameSearch
+		}));
 	};
 
 	render() {
@@ -101,6 +107,7 @@ class Root extends Component {
 			handleSearchInput: this.handleSearchInput,
 			markAsCompleted: this.markAsCompleted,
 			openAddItemModal: this.openAddItemModal,
+			switchSearch: this.switchSearch,
 			...this.state
 		};
 

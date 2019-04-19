@@ -5,6 +5,7 @@ import Input from '../../components/Input/Input';
 import styles from './GroceryListView.module.scss';
 import { FaAngleDown } from 'react-icons/fa';
 import Button from '../../components/Button/Button';
+import RadioButton from '../../components/RadioButton/RadioButton';
 
 const SearchInput = ({ context }) => (
 	<Input
@@ -12,7 +13,7 @@ const SearchInput = ({ context }) => (
 		type="text"
 		onChange={context.handleSearchInput}
 		name="searchQuery"
-		label="Search by item name"
+		label={context.isNameSearch ? 'Search by name' : 'Search by category'}
 		value={context.searchQuery}
 		tag="searchInput"
 	/>
@@ -22,13 +23,31 @@ const GroceryListView = () => (
 	<AppContext.Consumer>
 		{(context) => (
 			<div className={styles.wrapper}>
+				<div>
+					<RadioButton
+						switchFn={context.switchSearch}
+						checked={context.isNameSearch}>
+						Name
+					</RadioButton>
+					<RadioButton
+						switchFn={context.switchSearch}
+						checked={!context.isNameSearch}>
+						Category
+					</RadioButton>
+				</div>
+
 				<SearchInput context={context} />
+
 				<Button onClick={context.openAddItemModal}>Add item</Button>
 				<div>
 					{context.searchQuery ? (
 						<List items={context.grocery.filter(g => {
-							const shouldFilter = g.name.toLowerCase().includes(context.searchQuery.toLowerCase());
-							return shouldFilter;
+							const searchQuery = context.searchQuery.toLowerCase();
+							if (context.isNameSearch) {
+								return g.name.toLowerCase().includes(searchQuery);
+							}
+
+							return g.category.toLowerCase().includes(searchQuery);
 						})} />
 					) : (
 							<List items={context.grocery} />
@@ -41,7 +60,22 @@ const GroceryListView = () => (
 
 				<div>
 					{context.groceryCompleted.length ? (
-						<List items={context.groceryCompleted} />
+						<>
+							{
+								context.searchQuery ? (
+									<List items={context.groceryCompleted.filter(g => {
+										const searchQuery = context.searchQuery.toLowerCase();
+										if (context.isNameSearch) {
+											return g.name.toLowerCase().includes(searchQuery);
+										}
+
+										return g.category.toLowerCase().includes(searchQuery);
+									})} />
+								) : (
+										<List items={context.groceryCompleted} />
+									)
+							}
+						</>
 					) : (
 							null
 						)}

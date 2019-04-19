@@ -28,6 +28,14 @@ const AddGroceryItemForm = ({ context, handleInputChange, state }) => (
 				label="Quantity"
 				required
 			/>
+			<Input
+				onChange={handleInputChange}
+				value={state.category}
+				type="text"
+				name="category"
+				label="Category"
+				required
+			/>
 			<Button>Save</Button>
 		</form>
 	</div>
@@ -66,7 +74,8 @@ class Form extends React.Component {
 		name: this.props.name || '',
 		quantity: '',
 		price: '',
-		buyer: ''
+		buyer: '',
+		category: ''
 	};
 
 	handleInputChange = event => {

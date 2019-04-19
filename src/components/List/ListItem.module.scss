@@ -1,6 +1,6 @@
 .wrapper {
 	list-style: none;
-    padding: 0 30px 50px 0;
+    padding: 0 0 50px 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -14,9 +14,13 @@
 	align-items: center;
 	place-content: center center;
 	position: relative;
-	max-width: 40%;
 	min-width: 30%;
 	border-style: dotted;
+	width: 30%;
+
+	@media (max-width: 600px) {
+		width: 100%;
+	}
 }
 .checkbox {
 		position: absolute;
@@ -48,6 +52,12 @@
 		place-content: center flex-start;
 		align-items: center;
 		flex-wrap: nowrap;
+
+		h3 {
+			@media (max-width: 600px) {
+				font-size: 20px;
+			}
+		}
 	}
 }
 

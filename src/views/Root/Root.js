@@ -20,7 +20,8 @@ class Root extends Component {
 		searchQuery: '',
 		groceryCompleted: [],
 		itemUnderEdition: '',
-		isNameSearch: true
+		isNameSearch: true,
+		showCompleted: true
 	};
 
 	groceryService = new GroceryService();
@@ -98,6 +99,12 @@ class Root extends Component {
 		}));
 	};
 
+	toggleShowCompleted = () => {
+		this.setState(prevState => ({
+			showCompleted: !prevState.showCompleted
+		}));
+	};
+
 	render() {
 		const { isModalOpen, formType, itemUnderEdition } = this.state;
 		const contextElements = {
@@ -108,6 +115,7 @@ class Root extends Component {
 			markAsCompleted: this.markAsCompleted,
 			openAddItemModal: this.openAddItemModal,
 			switchSearch: this.switchSearch,
+			toggleShowCompleted: this.toggleShowCompleted,
 			...this.state
 		};
 

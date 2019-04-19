@@ -13,10 +13,17 @@
 }
 
 .checkmark {
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  background-color: #eee;
+	position: absolute;
+	height: 50px;
+	width: 50px;
+	background-color: #eee;
+
+  	@media (max-width: 600px) {
+		height: 30px;
+		width: 30px;
+		top: 20px;
+		left: 15px;
+	}
 }
 
 .container:hover input ~ .checkmark {
@@ -47,4 +54,9 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+
+  @media (max-width: 600px) {
+		height: 15px;
+		width: 10px;
+	}
 }

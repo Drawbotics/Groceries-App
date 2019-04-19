@@ -3,7 +3,7 @@ import AppContext from '../../context';
 import List from '../../components/List/List';
 import Input from '../../components/Input/Input';
 import styles from './GroceryListView.module.scss';
-import { FaAngleDown } from 'react-icons/fa';
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import Button from '../../components/Button/Button';
 import RadioButton from '../../components/RadioButton/RadioButton';
 
@@ -54,32 +54,36 @@ const GroceryListView = () => (
 						)}
 				</div>
 				<div>
-					<label>Completed</label>
-					<FaAngleDown />
+					<label onClick={context.toggleShowCompleted}>Completed</label>
+					{
+						context.showCompleted ? (<FaAngleDown />) : (<FaAngleUp />)
+					}
 				</div>
 
-				<div>
-					{context.groceryCompleted.length ? (
-						<>
-							{
-								context.searchQuery ? (
-									<List items={context.groceryCompleted.filter(g => {
-										const searchQuery = context.searchQuery.toLowerCase();
-										if (context.isNameSearch) {
-											return g.name.toLowerCase().includes(searchQuery);
-										}
+				{context.showCompleted ? (
+					<div>
+						{context.groceryCompleted.length ? (
+							<>
+								{
+									context.searchQuery ? (
+										<List items={context.groceryCompleted.filter(g => {
+											const searchQuery = context.searchQuery.toLowerCase();
+											if (context.isNameSearch) {
+												return g.name.toLowerCase().includes(searchQuery);
+											}
 
-										return g.category.toLowerCase().includes(searchQuery);
-									})} />
-								) : (
-										<List items={context.groceryCompleted} />
-									)
-							}
-						</>
-					) : (
-							null
-						)}
-				</div>
+											return g.category.toLowerCase().includes(searchQuery);
+										})} />
+									) : (
+											<List items={context.groceryCompleted} />
+										)
+								}
+							</>
+						) : (
+								null
+							)}
+					</div>) : (null)
+				}
 			</div>
 		)}
 	</AppContext.Consumer>

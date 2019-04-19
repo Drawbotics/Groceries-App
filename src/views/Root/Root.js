@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './index.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import AppContext from '../../context';
 import Modal from '../../components/Modal/Modal';
 import Header from '../../components/Header/Header';
 import GroceryListView from '../GroceryListView/GroceryListView';
+import RecipesListView from '../RecipesListView/RecipesListView';
+import StatisticsView from '../StatisticsView/StatisticsView';
 import Form from '../../components/Form/Form';
 import FormTypes from '../../components/Form/FormTypes';
 
@@ -102,8 +104,12 @@ class Root extends Component {
 			<BrowserRouter>
 				<AppContext.Provider value={contextElements}>
 					<Header />
-					<main className={'container'}>
-						<Route exact path="/" component={GroceryListView}></Route>
+					<main className="container">
+						<Switch>
+							<Route exact path="/" component={GroceryListView}></Route>
+							<Route path="/recipes" component={RecipesListView}></Route>
+							<Route path="/stats" component={StatisticsView}></Route>
+						</Switch>
 					</main>
 					{isModalOpen && <Modal handleCloseModal={this.closeModal}>
 						<Form formType={formType} name={name} />

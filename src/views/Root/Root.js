@@ -53,16 +53,16 @@ class Root extends Component {
 
 	updateItem = (event, item) => {
 		event.preventDefault();
-		const { groceryCompleted } = this.state;
-
-		const groceryItemIndex = groceryCompleted.findIndex(g => g.name === item.name);
-		const groceryItem = groceryCompleted[groceryItemIndex];
+		const { grocery, groceryCompleted } = this.state;
+		const groceryItem = grocery.find(g => g.name === item.name);
 		groceryItem.price = item.price;
 		groceryItem.buyer = item.buyer;
+		groceryItem.isBought = true;
 
 		this.setState({
-			groceryCompleted: groceryCompleted,
-			currentItemName: ''
+			grocery: [...grocery.filter(g => g.name !== item.name)],
+			groceryCompleted: [...groceryCompleted, groceryItem],
+			name: null
 		});
 		this.closeModal();
 	};
@@ -75,17 +75,12 @@ class Root extends Component {
 	};
 
 	markAsCompleted = (name) => {
-		const { grocery } = this.state;
 
-		const item = grocery.find(g => g.name === name);
-		item.isBought = true;
-		this.setState(prevState => ({
-			grocery: [...prevState["grocery"].filter(g => g.name !== name)],
-			groceryCompleted: [...prevState["groceryCompleted"], item],
+		this.setState({
 			isModalOpen: true,
 			formType: FormTypes.addPrice,
 			name: name
-		}));
+		});
 	}
 
 	render() {

@@ -18,7 +18,7 @@ const ListItem = ({ name, quantity, isBought }) => (
 								</>
 							) : (
 									<>
-										<h3>Name: </h3>
+										<h3 className={styles.itemNameBought}>Name: </h3>
 										<h3 className={styles.itemNameBought}>{name}</h3>
 									</>
 								)}
@@ -32,7 +32,7 @@ const ListItem = ({ name, quantity, isBought }) => (
 								</>
 							) : (
 									<>
-										<h3>Quantity: </h3>
+										<h3 className={styles.itemQuantityBought}>Quantity: </h3>
 										<p className={styles.itemQuantityBought}>{quantity}</p>
 									</>
 								)}

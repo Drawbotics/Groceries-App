@@ -4,8 +4,9 @@ import AppContext from '../../context';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import FormTypes from './FormTypes';
+import CategoryDropdown from '../Dropdown/Dropdown';
 
-const AddGroceryItemForm = ({ context, handleInputChange, state }) => (
+const AddGroceryItemForm = ({ context, handleInputChange, handleDropdownChange, state }) => (
 	<div className={styles.wrapper}>
 		<h2 className={styles.header}>ADD NEW ITEM</h2>
 		<form
@@ -28,14 +29,7 @@ const AddGroceryItemForm = ({ context, handleInputChange, state }) => (
 				label="Quantity"
 				required
 			/>
-			<Input
-				onChange={handleInputChange}
-				value={state.category}
-				type="text"
-				name="category"
-				label="Category"
-				required
-			/>
+			<CategoryDropdown onChange={handleDropdownChange} />
 			<Button>Save</Button>
 		</form>
 	</div>
@@ -69,6 +63,7 @@ const AddPriceItemForm = ({ context, handleInputChange, state }) => (
 	</div>
 );
 class Form extends React.Component {
+
 	state = {
 		type: 'grocery',
 		name: this.props.name || '',
@@ -84,6 +79,12 @@ class Form extends React.Component {
 		});
 	};
 
+	handleDropdownChange = (value) => {
+		this.setState({
+			category: value
+		});
+	};
+
 	render() {
 		const { formType } = this.props;
 
@@ -91,7 +92,9 @@ class Form extends React.Component {
 			<AppContext.Consumer>
 				{(context) => (
 					formType === FormTypes.addItem ? (
-						<AddGroceryItemForm context={context} handleInputChange={this.handleInputChange}
+						<AddGroceryItemForm context={context}
+							handleInputChange={this.handleInputChange}
+							handleDropdownChange={this.handleDropdownChange}
 							state={this.state} />
 					) : (
 							<AddPriceItemForm context={context} handleInputChange={this.handleInputChange}

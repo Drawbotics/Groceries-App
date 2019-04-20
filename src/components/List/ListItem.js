@@ -4,6 +4,24 @@ import Checkbox from '../Checkbox/Checkbox';
 import AppContext from '../../context';
 import { FaTrash } from 'react-icons/fa';
 
+const ItemInfo = ({ isBought, label, value }) => (
+	<div className={styles.info}>
+		{
+			!isBought ? (
+				<>
+					<h3 className={styles.item}>{label}: </h3>
+					<h3 className={styles.item} >{value}</h3>
+				</>
+			) : (
+					<>
+						<h3 className={styles.itemBought}>{label}: </h3>
+						<h3 className={styles.itemBought}>{value}</h3>
+					</>
+				)
+		}
+	</div>
+);
+
 const ListItem = ({ name, quantity, isBought }) => {
 	const subWrapperClass = !isBought ? styles.subWrapper : styles.subWrapperCompleted;
 	return (
@@ -12,34 +30,8 @@ const ListItem = ({ name, quantity, isBought }) => {
 				<li className={styles.wrapper}>
 					<div className={subWrapperClass}>
 						<div className={styles.infoWrapper}>
-							<div className={styles.info}>
-								{!isBought ? (
-									<>
-										<h3 className={styles.itemName}>Name: </h3>
-										<h3 className={styles.itemName}>{name}</h3>
-									</>
-								) : (
-										<>
-											<h3 className={styles.itemNameBought}>Name: </h3>
-											<h3 className={styles.itemNameBought}>{name}</h3>
-										</>
-									)}
-
-							</div>
-							<div className={styles.info}>
-								{!isBought ? (
-									<>
-										<h3 className={styles.itemQuantity}>Quantity: </h3>
-										<h3 className={styles.itemQuantity}>{quantity}</h3>
-									</>
-								) : (
-										<>
-											<h3 className={styles.itemQuantityBought}>Quantity: </h3>
-											<h3 className={styles.itemQuantityBought}>{quantity}</h3>
-										</>
-									)}
-
-							</div>
+							<ItemInfo isBought={isBought} label="Name" value={name} />
+							<ItemInfo isBought={isBought} label="Quantity" value={quantity} />
 						</div>
 						<div className={styles.checkbox}>
 							<Checkbox

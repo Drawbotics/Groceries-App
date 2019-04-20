@@ -11,7 +11,7 @@ const Input = ({ tag: Tag, name, type, label, maxLength, ...props }) => (
 			id={name}
 			placeholder=" "
 			maxLength={maxLength}
-			{...props} 
+			{...props}
 		/>
 		<label className={styles.label} htmlFor={name}>
 			{label}
@@ -29,7 +29,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
 	tag: 'input',
-	maxLength: 100,
+	maxLength: 20,
 }
 
 export default Input;

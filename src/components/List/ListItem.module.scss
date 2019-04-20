@@ -12,7 +12,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	place-content: center center;
+	place-content: center flex-start;
 	position: relative;
 	min-width: 30%;
 	border-style: solid;
@@ -30,7 +30,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	place-content: center center;
+	place-content: center flex-start;
 	position: relative;
 	min-width: 30%;
 	width: 30%;
@@ -42,13 +42,13 @@
 }
 
 .checkbox {
-		position: absolute;
-		align-items: right;
-		margin-left: 30px;
-		width: 60px;
-		height: 50px;
-		right: 20px;
-	}
+	position: absolute;
+	align-items: right;
+	margin-left: 30px;
+	width: 60px;
+	height: 50px;
+	right: 20px;
+}
 
 .remove {
 	position: absolute;
@@ -63,7 +63,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	place-content: center center;
+	place-content: center flex-start;
 
 	.info {
 		display: flex;
@@ -72,6 +72,7 @@
 		align-items: center;
 		flex-wrap: nowrap;
 		color: rgb(0, 83, 135);
+		width: 100%;
 		
 		h3 {
 
@@ -82,45 +83,21 @@
 	}
 }
 
-.itemName {
+.item {
 	font-size: 30px;
 	padding: 5px 20px 5px 20px;
-	text-transform: capitalize;
-	margin-left: 10px;
 	color:white;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.itemNameBought{
+.itemBought{
 	font-size: 30px;
 	padding: 5px 20px 5px 20px;
 	text-transform: capitalize;
 	position: relative;
 
-
-	&::after {
-		border-bottom: 0.125em solid rgba(200, 235, 223, 0.5);
-		content: "";
-		left: 0;
-		line-height: 1em;
-		margin-top: calc(0.125em / 2 * -1);
-		position: absolute;
-		right: 0;
-		top: 50%;
-	}
-}
-
-.itemQuantity {
-	font-size: 30px;
-	padding-left: 10px;
-	margin-left: 10px;
-	color:white;
-}
-
-.itemQuantityBought{
-	font-size: 30px;
-	padding: 5px 20px 5px 20px;
-	text-transform: capitalize;
-	position: relative;
 
 	&::after {
 		border-bottom: 0.125em solid rgba(200, 235, 223, 0.5);

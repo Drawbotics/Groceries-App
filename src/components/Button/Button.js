@@ -11,4 +11,5 @@ const Button = ({ children, secondary, ...props }) => {
 		</>
 	);
 };
+
 export default Button;

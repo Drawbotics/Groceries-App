@@ -17,7 +17,26 @@ const SearchInput = ({ context }) => (
 		value={context.searchQuery}
 		tag="searchInput"
 	/>
-)
+);
+
+const FilterableList = ({ context, listItems }) => (
+	<div>
+		{
+			context.searchQuery ? (
+				<List items={listItems.filter(g => {
+					const searchQuery = context.searchQuery.toLowerCase();
+					if (context.isNameSearch) {
+						return g.name.toLowerCase().includes(searchQuery);
+					}
+
+					return g.category.toLowerCase().includes(searchQuery);
+				})} />
+			) : (
+					<List items={listItems} />
+				)
+		}
+	</div>
+);
 
 const GroceryListView = () => (
 	<AppContext.Consumer>
@@ -37,26 +56,13 @@ const GroceryListView = () => (
 				</div>
 
 				<SearchInput context={context} />
-
 				<Button onClick={context.openAddItemModal}>Add item</Button>
-				<div>
-					{context.searchQuery ? (
-						<List items={context.grocery.filter(g => {
-							const searchQuery = context.searchQuery.toLowerCase();
-							if (context.isNameSearch) {
-								return g.name.toLowerCase().includes(searchQuery);
-							}
 
-							return g.category.toLowerCase().includes(searchQuery);
-						})} />
-					) : (
-							<List items={context.grocery} />
-						)}
-				</div>
-				<div>
+				<FilterableList context={context} listItems={context.grocery} />
+				<div className={styles.label}>
 					<label
 						onClick={context.toggleShowCompleted}
-						className={styles.label}
+
 					>Completed</label>
 					{
 						context.showCompleted ? (<FaAngleDown />) : (<FaAngleUp />)
@@ -66,22 +72,7 @@ const GroceryListView = () => (
 				{context.showCompleted ? (
 					<div>
 						{context.groceryCompleted.length ? (
-							<>
-								{
-									context.searchQuery ? (
-										<List items={context.groceryCompleted.filter(g => {
-											const searchQuery = context.searchQuery.toLowerCase();
-											if (context.isNameSearch) {
-												return g.name.toLowerCase().includes(searchQuery);
-											}
-
-											return g.category.toLowerCase().includes(searchQuery);
-										})} />
-									) : (
-											<List items={context.groceryCompleted} />
-										)
-								}
-							</>
+							<FilterableList context={context} listItems={context.groceryCompleted} />
 						) : (
 								null
 							)}

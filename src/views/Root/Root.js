@@ -12,7 +12,6 @@ import FormTypes from '../../components/Form/FormTypes';
 import { GroceryService } from './GroceryService';
 
 class Root extends Component {
-
 	state = {
 		isModalOpen: false,
 		formType: FormTypes.addItem,

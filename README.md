@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Groceries App
 
-## Available Scripts
+App which allows you to create a list of items to buy.
 
-In the project directory, you can run:
+Checkout here the app: https://groceries-app.mizgierm.now.sh/
 
-### `npm start`
+### Current project status:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. You can:
+	- add new item to the shopping list and specify its name and quantity
+	- delete an item, if you made a mistake by adding it to the list
+	- browse through the shopping list of items to buy and already bought ones
+	- mark an item as bought and specify its cost and who bought it
+	- search for your items by name or category (vegetable, fruit, meat, bakery)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+ 2. Next release (v2):
+	- view some kind of statistics (e.g. how much money was spent this month, how much each user spent, ...)
+	- recipe page contains list of recipes. It is possible to click on recipe and add all its items to 'to buy' list
+	- app suggests recipes based on your shopping list
+	- possibility to add all recipe ingredients to shopping list
+	- fixing potential bugs
 
-### `npm test`
+3. Next release (v3):
+	- remainders can be added to specific items (e.g. using google calendar API)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### How to run
 
-### `npm run build`
+Clone repository on your computer
+```
+git clone https://github.com/1n3ffbl3/Groceries-App.git
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure that you have either npm or yarn installed.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Run 'yarn' to install dependencies and 'yarn start' to start the application.
+```
+yarn 
+yarn start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Application is available on localhost:3000
 
-### `npm run eject`
+### Technical aspects
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The app use localStorage to store data. If you run the app on your browser in multiple tabs, it will share data between those tabs after actions on each tab (adding new item / marking as bought / deleting an item).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+It is worth to checkout 'GroceryService' file to see, how above operations are done.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Supported cases for multiple users
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- User1 will be aliased as U1
+- User2 will be aliased as U2
 
-## Learn More
+I assume that U1 and U2 are using same computer and browser, but different tabs.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- U1 adds an item to 'to buy' list. For U2 change is visible only after:
+	- refresh of the page 
+	- adding new item (adding an item fetches all items from storage)
+- U1 updates an item and marks it as completed. U2 sees change only after:
+	- refresh of the page
+	- add new item 
+	- deletes any existing 'to buy' item (which is not this one)
+- U1 deletes an item. U2 sees change only after:
+	- refresh of the page
+	- add new item 
+	- deletes any existing 'to buy' item (which is not this one)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Case when U1 marks item as completed, but didn't finish filling in information
+(price and buyer) and in the same time U2 deletes same item, is currently not supported.
 
-### Code Splitting
+### To be proud 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- using sass in efficient way (reducing redundant css)
+- using localStorage to save data inside browser to support multiple users
+- reducing redundant code by making reusable components
+- effectively using React Context API, which is a lighter alternative to redux, which makes app less complex
+- finishing first version of application in specified time (3.5 days)
+with all features of first release
+- fixing unexpected bugs

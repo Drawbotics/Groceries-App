@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './RadioButton.module.scss';
 
-const RadioButton = ({ children, id, checked, switchFn }) => (
+const RadioButton = ({ children, checked, switchFn }) => (
 	<label className={styles.radio}>
 		<input
-			id={id}
 			type="radio"
 			checked={checked}
 			onChange={switchFn}
@@ -13,5 +13,10 @@ const RadioButton = ({ children, id, checked, switchFn }) => (
 		{children}
 	</label>
 );
+
+RadioButton.propTypes = {
+	switchFn: PropTypes.func,
+	checked: PropTypes.bool
+};
 
 export default RadioButton;

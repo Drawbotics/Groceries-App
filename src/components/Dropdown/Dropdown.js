@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import styles from './Dropdown.module.scss';
 
-export default class CategoryDropdown extends React.Component {
+class CategoryDropdown extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -48,3 +49,9 @@ export default class CategoryDropdown extends React.Component {
 		);
 	}
 };
+
+CategoryDropdown.propTypes = {
+	onChange: PropTypes.func,
+};
+
+export default CategoryDropdown;

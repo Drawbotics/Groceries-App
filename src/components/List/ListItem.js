@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './ListItem.module.scss';
 import Checkbox from '../Checkbox/Checkbox';
 import AppContext from '../../context';
@@ -53,6 +54,12 @@ const ListItem = ({ name, quantity, isBought }) => {
 
 		</AppContext.Consumer>
 	);
+};
+
+ListItem.propTypes = {
+	name: PropTypes.string.isRequired,
+	quantity: PropTypes.string.isRequired,
+	isBought: PropTypes.bool,
 };
 
 export default ListItem;

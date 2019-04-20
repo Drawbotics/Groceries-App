@@ -24,12 +24,13 @@ Input.propTypes = {
 	tag: PropTypes.string,
 	name: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
-	label: PropTypes.string.isRequired
+	label: PropTypes.string.isRequired,
+	maxLength: PropTypes.number,
 };
 
 Input.defaultProps = {
 	tag: 'input',
 	maxLength: 20,
-}
+};
 
 export default Input;

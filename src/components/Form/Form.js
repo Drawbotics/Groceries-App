@@ -58,7 +58,7 @@ const AddPriceItemForm = ({ context, handleInputChange, state }) => (
 				label="Who"
 				required
 			/>
-			<Button>Save</Button>
+			<Button secondary>Save</Button>
 		</form>
 	</div>
 );
